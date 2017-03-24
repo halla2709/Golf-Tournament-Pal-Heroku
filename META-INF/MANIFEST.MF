@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GolfTournamentPal
+Bundle-SymbolicName: GolfTournamentPal
+Bundle-Version: 1.0.0.qualifier
+Export-Package: project,
+ project.controller,
+ project.persistence.entities,
+ project.persistence.repositories,
+ project.service,
+ project.service.Implementation

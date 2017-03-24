@@ -1,0 +1,118 @@
+.w3-theme {
+	color: #ffffff;
+	opacity: 1;
+	background-color: #001A85;
+}
+
+.w3-theme2 {
+	color: #ffffff;
+	background-color: #001A85;
+	opacity: 0.3;
+}
+
+.w3-theme3 {
+	background-color: #ffffff;
+}
+
+.w3-theme4 {
+	background-color: #ffffff;
+	color: #001A85;
+}
+
+
+.theme {
+	color: #ffffff;
+	opacity: 1;
+	background-color: #001A85;
+}
+
+#table {
+	background-color: #001A85;
+	color: #ffffff;
+	font:bold;
+}
+
+ul {
+	list-style: none;
+}
+
+#nav {
+	position: fixed;
+	top: 0px;
+	height: 12em;
+	width: 100%;
+	z-index: 0;
+}
+
+#login {
+	float: right;
+}
+
+#main {
+	position: relative;
+	top: 8em;
+	padding: 2em;
+	margin-bottom: 7em;
+	z-index: 0;
+	min-height: 32em;
+	
+}
+
+#main2 {
+	position: relative;
+	top: 8em;
+	padding: 2em;
+	margin-bottom: 7em;
+	z-index: 0;
+	min-height:200%;
+	
+}
+
+#golferimg {
+	width: 100%;
+	max-width: 200px;
+}
+
+#footer {
+   position:relative;
+   bottom:0;
+   width:100%;
+}
+
+#footer1, #footer2, #footer3 {
+	height: 12em;
+}
+
+/* This is document specific*/
+#search {
+	width: 30%;
+}
+
+#matchplay, #scoreboard {
+	padding: 2em;
+}
+
+#hidden {
+	display: none;
+}
+
+#bigbutton {
+	height:3em;
+	background-color: #001A85;
+}
+
+#normalbutton {
+	height:3em;
+	background-color: #001A85;
+}
+
+#normalbutton2 {
+	background-color: #001A85;
+}
+
+
+.seeButton {
+	width: 42%;
+	margin: 2%;
+	padding: 1%;
+}
