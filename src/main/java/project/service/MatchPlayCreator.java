@@ -41,9 +41,9 @@ public class MatchPlayCreator {
 	}
 	
 	/**
-	 * Fjoldi leikmanna tarf að ganga upp í fjoldi ridla ef það eiga að vera ridlar.
-	 * Einnig þarf fjoldi ridla að vera veldi af tveimur. Ef tad eru ekki ridlar tarf
-	 * fjoldi leikmanna að vera veldi af tveimur.
+	 * Fjoldi leikmanna tarf ad ganga upp i fjoldi ridla ef tad eiga ad vera ridlar.
+	 * Einnig tarf fjoldi ridla ad vera veldi af tveimur. Ef tad eru ekki ridlar tarf
+	 * fjoldi leikmanna ad vera veldi af tveimur.
 	 * @return true ef fjoldinn passar, false annars.
 	 */
 	public boolean playerNumberValidator() {
@@ -115,7 +115,7 @@ public class MatchPlayCreator {
 			List<Match> matches = new ArrayList<Match>();
 			for(int j = 0; j < bracketPlayers.size()-1; j++) {
 				for(int k = j+1; k < bracketPlayers.size(); k++) {
-					List<Golfer> matchGolfers = new ArrayList<>();
+					List<Golfer> matchGolfers = new ArrayList<Golfer>();
 					matchGolfers.add(bracketPlayers.get(j));
 					matchGolfers.add(bracketPlayers.get(k));
 					Match newMatch = new Match(matchGolfers, "np", null);

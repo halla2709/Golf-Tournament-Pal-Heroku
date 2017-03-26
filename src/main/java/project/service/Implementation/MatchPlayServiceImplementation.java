@@ -154,8 +154,8 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 
 	/**
 	 * Nidurstadan mun vera kennitala leikmanns : fjoldi stiga sem leikmadurinn er med
-	 * Match results er a forminu kt : nidurstada þar sem kt er kennitala leikmannsins sem sigradi
-	 * Ef engin nidurstada hefur verið skrad er results np
+	 * Match results er a forminu kt : nidurstada tar sem kt er kennitala leikmannsins sem sigradi
+	 * Ef engin nidurstada hefur verid skrad er results np
 	 */
 	@Override
 	public HashMap<Long, Integer> getPlayerPoints(List<Bracket> brackets) {
