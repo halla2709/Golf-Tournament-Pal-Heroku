@@ -153,9 +153,9 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	}
 
 	/**
-	 * Niðurstaðan mun vera kennitala leikmanns : fjöldi stiga sem leikmaðurinn er með
-	 * Match results er á forminu kt : niðurstaða þar sem kt er kennitala leikmannsins sem sigraði
-	 * Ef engin niðurstaða hefur verið skáð er results np
+	 * Nidurstadan mun vera kennitala leikmanns : fjoldi stiga sem leikmadurinn er med
+	 * Match results er a forminu kt : nidurstada þar sem kt er kennitala leikmannsins sem sigradi
+	 * Ef engin nidurstada hefur verið skrad er results np
 	 */
 	@Override
 	public HashMap<Long, Integer> getPlayerPoints(List<Bracket> brackets) {
@@ -223,8 +223,8 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	@Override
 	public List<Match> getPlayersToPlayOffTree(List<Bracket> brackets, int playersInTree) {
 		HashMap<Long, Integer> playerPoints = this.getPlayerPoints(brackets);
-		List<Golfer> treePlayers = new ArrayList<>();
-		List<Match> firstRoundMatches = new ArrayList<>();
+		List<Golfer> treePlayers = new ArrayList<Golfer>();
+		List<Match> firstRoundMatches = new ArrayList<Match>();
 		for(Bracket bracket : brackets) {
 			int playersInBracket = bracket.getPlayers().size();
 			int playersFromThisBracket = 0;
@@ -243,11 +243,11 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 		}
 		
 		for(int i = 0; i < treePlayers.size(); i += 4) {
-			List<Golfer> inMatch0 = new ArrayList<> ();
+			List<Golfer> inMatch0 = new ArrayList<Golfer> ();
 			inMatch0.add(treePlayers.get(i));
 			inMatch0.add(treePlayers.get(i+2));
 			System.out.println(treePlayers.get(i).getName() + " vs " + treePlayers.get(i+2).getName());
-			List<Golfer> inMatch1 = new ArrayList<> ();
+			List<Golfer> inMatch1 = new ArrayList<Golfer> ();
 			inMatch1.add(treePlayers.get(i+1));
 			inMatch1.add(treePlayers.get(i+3));
 			System.out.println(treePlayers.get(i+1).getName() + " vs " + treePlayers.get(i+3).getName());

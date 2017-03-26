@@ -41,10 +41,10 @@ public class MatchPlayCreator {
 	}
 	
 	/**
-	 * Fjöldi leikmanna þarf að ganga upp í fjöldi riðla ef það eiga að vera riðlar.
-	 * Einnig þarf fjöldi riðla að vera veldi af tveimur. Ef það eru ekki riðlar þarf
-	 * fjöldi leikmanna að vera veldi af tveimur.
-	 * @return true ef fjöldinn passar, false annars.
+	 * Fjoldi leikmanna tarf að ganga upp í fjoldi ridla ef það eiga að vera ridlar.
+	 * Einnig þarf fjoldi ridla að vera veldi af tveimur. Ef tad eru ekki ridlar tarf
+	 * fjoldi leikmanna að vera veldi af tveimur.
+	 * @return true ef fjoldinn passar, false annars.
 	 */
 	public boolean playerNumberValidator() {
 		int playerNumber = players.size();
@@ -85,7 +85,7 @@ public class MatchPlayCreator {
 				 * 		2m 	...
 				 * 		...			n-1	
 				 * 
-				 *   T.d. ef sorted = {1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16} sem á að raða í 4 riðla þá raðast það svona
+				 *   T.d. ef sorted = {1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16} sem a ad rada i 4 ridla ta radast tad svona
 				 *   		b1		b2		b3		b4
 				 *   		1		2		3		4
 				 *   		8		7		6		5
@@ -112,7 +112,7 @@ public class MatchPlayCreator {
 	private Bracket[] addMatchesToBrackets(Bracket[] brackets) {
 		for(int i = 0; i < brackets.length; i++) {
 			List<Golfer> bracketPlayers = brackets[i].getPlayers();
-			List<Match> matches = new ArrayList<>();
+			List<Match> matches = new ArrayList<Match>();
 			for(int j = 0; j < bracketPlayers.size()-1; j++) {
 				for(int k = j+1; k < bracketPlayers.size(); k++) {
 					List<Golfer> matchGolfers = new ArrayList<>();
