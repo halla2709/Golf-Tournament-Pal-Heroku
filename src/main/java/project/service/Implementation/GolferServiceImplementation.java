@@ -63,5 +63,26 @@ public class GolferServiceImplementation implements GolferService{
 	public Golfer findOne(long social) {
 		return repository.findOne(social);
 	}
+	
+	public void addParticipantsFriendsForGolfer(Golfer host, List<Golfer> participants) {
+		int playerNum = participants.size();
+		for(int i = 0; i < playerNum; i++) {
+			Golfer golfer = participants.get(i);
+			if(host.getSocial() != golfer.getSocial()) {
+				Golfer dataGolfer = findOne(golfer.getSocial());
+				if(dataGolfer != null) {
+					golfer = dataGolfer;
+					if(!areFriends(host, golfer)) {
+						addFriendForGolfer(host, golfer);
+					}
+				}
+				else {
+					save(golfer);
+					addFriendForGolfer(host, golfer);
+				}
+			}		
+			
+		}
+	}
 
 }

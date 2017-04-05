@@ -4,10 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.persistence.entities.Golfer;
+import project.persistence.entities.MatchPlayTournament;
 import project.persistence.entities.ScoreboardTournament;
 import project.service.GolferService;
 import project.service.ScoreboardService;
@@ -104,5 +108,20 @@ public class ScoreboardCreatorController {
 		beenhere = false;
 		return "matchplay2";
 	}
+    
+    @RequestMapping(value="/json/scoreboard", method = RequestMethod.POST)
+    public @ResponseBody ScoreboardTournament postTournamentFromServer(@RequestBody ScoreboardTournament sentTournament,
+			@RequestParam Long hostSocial) {
+    	System.out.println(sentTournament.getName());
+		Golfer host = golferService.findOne(hostSocial);
+		
+		// Adda playerum í gagnagrunn og sem vin. 
+		golferService.addParticipantsFriendsForGolfer(host, sentTournament.getPlayers());
+		
+		ScoreboardTournament newTournament = scoreboardService.save(sentTournament.getPlayers(), sentTournament.getNumberOfRounds(),
+				sentTournament.getCourse(), sentTournament.getName(), sentTournament.getStartDate());
+		return newTournament;
+    }
+    
 	
 }

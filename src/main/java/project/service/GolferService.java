@@ -22,5 +22,7 @@ public interface GolferService {
 	Golfer findOne(long social);
 	
 	boolean areFriends(Golfer golfer, Golfer friend);
+	
+	public void addParticipantsFriendsForGolfer(Golfer host, List<Golfer> participants);
 }	
 

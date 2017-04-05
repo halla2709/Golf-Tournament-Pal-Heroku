@@ -41,6 +41,10 @@ public class MatchPlayCreator {
 	}
 	
 	/**
+	 * Fjöldi leikmanna þarf að ganga upp í fjöldi riðla ef það eiga að vera riðlar.
+	 * Einnig þarf fjöldi riðla að vera veldi af tveimur. Ef það eru ekki riðlar þarf
+	 * fjöldi leikmanna að vera veldi af tveimur.
+	 * @return true ef fjöldinn passar, false annars.
 	 * Fjoldi leikmanna tarf ad ganga upp i fjoldi ridla ef tad eiga ad vera ridlar.
 	 * Einnig tarf fjoldi ridla ad vera veldi af tveimur. Ef tad eru ekki ridlar tarf
 	 * fjoldi leikmanna ad vera veldi af tveimur.
@@ -55,6 +59,7 @@ public class MatchPlayCreator {
 			numOfBrackets = (int) Math.floor(dNumOfBrackets);
 			// Mega ekki vera faerri en 2 ridlar og fjoldi leikmanna verdur ad ganga upp i ridlana
 			if(numOfBrackets < 2 || numOfBrackets != dNumOfBrackets) return false;
+			// Fjï¿½ldi riï¿½la verï¿½ur aï¿½ vera veldi af 2.
 			// Fj�ldi ri�la ver�ur a� vera veldi af 2.
 			else if(Math.floor(changeToBase2(numOfBrackets)) == changeToBase2(numOfBrackets)) return true;
 			else return false;
@@ -73,11 +78,14 @@ public class MatchPlayCreator {
 	private Bracket[] createBracket() {
 		Bracket[] brackets = new Bracket[(int) numOfBrackets];
 		for(int i = 0; i < numOfBrackets; i++) {
+			// Riï¿½illinn hefur enn enga leikmenn en fï¿½r nafniï¿½ b0, b1,.. osfrv
 			// Ri�illinn hefur enn enga leikmenn en f�r nafni� b0, b1,.. osfrv
 			brackets[i] = new Bracket(null, "b" + i);
 			for(int j = i; j < players.size(); j = j+2*numOfBrackets) {
+				/* Eftir aï¿½ raï¿½aï¿½ er eftir forgjï¿½f inniheldur players
 				/* Eftir a� ra�a� er eftir forgj�f inniheldur players
 				 * [0,1,2,3,4,...,n-2,n-1]
+				 * Viljum aï¿½ raï¿½aï¿½ sï¿½ svona ï¿½ riï¿½lana:
 				 * Viljum a� ra�a� s� svona � ri�lana:
 				 *		b0 	 b1  ... bm
 				 *		0  	  1      m
@@ -85,6 +93,7 @@ public class MatchPlayCreator {
 				 * 		2m 	...
 				 * 		...			n-1	
 				 * 
+				 *   T.d. ef sorted = {1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16} sem á að raða í 4 riðla þá raðast það svona
 				 *   T.d. ef sorted = {1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16} sem a ad rada i 4 ridla ta radast tad svona
 				 *   		b1		b2		b3		b4
 				 *   		1		2		3		4
@@ -137,6 +146,8 @@ public class MatchPlayCreator {
 		 *   \/		1
 		 *   		2
 		 *   		...
+		 *   numOfMatches er fjï¿½ldi leikja ï¿½ fyrstu umferï¿½
+		 *   changeToBase2(numIn) er fjï¿½ldi umferï¿½a ï¿½.e. log2(fjï¿½ldi leikmanna ï¿½ fyrstu umferï¿½)
 		 *   numOfMatches er fj�ldi leikja � fyrstu umfer�
 		 *   changeToBase2(numIn) er fj�ldi umfer�a �.e. log2(fj�ldi leikmanna � fyrstu umfer�)
 		 *   
@@ -144,6 +155,7 @@ public class MatchPlayCreator {
 		
 		
 		List<PlayOffRound> rounds = new ArrayList<PlayOffRound>((int) changeToBase2(numIn));
+		// Ef ï¿½etta er ekki riï¿½lamï¿½t ï¿½ï¿½ er hï¿½gt aï¿½ stilla upp fyrstu umferï¿½inni
 		// Ef �etta er ekki ri�lam�t �� er h�gt a� stilla upp fyrstu umfer�inni
 		for(int i = 0; i < ((int) changeToBase2(numIn)); i++) {
 			List<Match> emptyMatches = new ArrayList<Match>(numOfMatches/(int) Math.pow(2, i)); 
@@ -155,6 +167,7 @@ public class MatchPlayCreator {
 		if(!areBrackets) {
 			List<Match> emptyMatches = new ArrayList<Match>(numOfMatches);
 			for(int i = 0; i < numOfMatches; i++) {
+				// Rï¿½ï¿½um ï¿½ umferï¿½ina eftir forgjï¿½f.
 				// R��um � umfer�ina eftir forgj�f.
 				List<Golfer> playersInMatch = new ArrayList<Golfer>();
 				playersInMatch.add(players.get(i));
@@ -172,6 +185,7 @@ public class MatchPlayCreator {
 	}
 	
 	public MatchPlayTournament createTournament(String course, String name, Date startDate) {
+		// Tjekkum hvort viï¿½ getum sett mï¿½tiï¿½ upp
 		// Tjekkum hvort vi� getum sett m�ti� upp
 		if(!playerNumberValidator()) return null;
 		
@@ -179,6 +193,9 @@ public class MatchPlayCreator {
 		PlayOffTree playoffs = null;
 		int numInPlayoffs = players.size();
 		
+		// Bï¿½um til riï¿½la ef ï¿½eir eiga aï¿½ vera. 
+		// Fjï¿½ldi ï¿½ ï¿½tslï¿½ttarkeppni fer ï¿½ï¿½ eftir ï¿½vï¿½
+		// hve margir komast upp ï¿½r riï¿½lunum.
 		// B�um til ri�la ef �eir eiga a� vera. 
 		// Fj�ldi � �tsl�ttarkeppni fer �� eftir �v�
 		// hve margir komast upp �r ri�lunum.
@@ -187,6 +204,7 @@ public class MatchPlayCreator {
 			numInPlayoffs = numOutOfBrackets*brackets.size();
 		}
 		
+		// Bï¿½um til ï¿½tslï¿½ttatrï¿½ï¿½
 		// B�um til �tsl�ttatr��
 		playoffs = createPlayOffTree(numInPlayoffs);
 		
@@ -195,6 +213,7 @@ public class MatchPlayCreator {
 	
 
 	public boolean saveTournament(MatchPlayTournament tournament) {
+		// Tenging viï¿½ gagnagrunn
 		// Tenging vi� gagnagrunn
 		return true;
 	}

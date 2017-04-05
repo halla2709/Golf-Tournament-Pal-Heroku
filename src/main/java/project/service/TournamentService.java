@@ -21,5 +21,6 @@ public interface TournamentService {
     
     List<Tournament> findByName(String name);
 
+    List<Tournament> findByGolfer(Long golferSocial);
 }
 

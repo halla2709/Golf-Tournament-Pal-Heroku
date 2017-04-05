@@ -103,7 +103,7 @@ public class Tournament {
 			try {
 				result = ndf.parse(startDate);
 			} catch (ParseException e1) {
-				e1.printStackTrace();
+				result = new Date(Long.parseLong(startDate));
 			}
 		} 
 		this.startDate = result;

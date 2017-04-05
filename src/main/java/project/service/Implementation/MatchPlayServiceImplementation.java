@@ -29,6 +29,8 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	}
 	
 	/**
+	 * MiÃ°aÃ° viÃ° gefnar upplÃ½singar er athugaÃ° hvort hÃ¦gt sÃ© aÃ° setja upp mÃ³t. Ef Ã¾aÃ° er hÃ¦gt
+	 * er mÃ³tiÃ° vistaÃ° Ã­ gagnagrunninn. Annars er skilaÃ° null.
 	 * Miðað við gefnar upplýsingar er athugað hvort hægt sé að setja upp mót. Ef það er hægt
 	 * er mótið vistað í gagnagrunninn. Annars er skilað null.
 	 */
@@ -153,6 +155,9 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 	}
 
 	/**
+	 * Niðurstaðan mun vera kennitala leikmanns : fjöldi stiga sem leikmaðurinn er með
+	 * Match results er á forminu kt : niðurstaða þar sem kt er kennitala leikmannsins sem sigraði
+	 * Ef engin niðurstaða hefur verið skáð er results np
 	 * Nidurstadan mun vera kennitala leikmanns : fjoldi stiga sem leikmadurinn er med
 	 * Match results er a forminu kt : nidurstada tar sem kt er kennitala leikmannsins sem sigradi
 	 * Ef engin nidurstada hefur verid skrad er results np
@@ -242,21 +247,32 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 			}
 		}
 		
-		for(int i = 0; i < treePlayers.size(); i += 4) {
+		if(playersInTree == 2) {
 			List<Golfer> inMatch0 = new ArrayList<Golfer> ();
-			inMatch0.add(treePlayers.get(i));
-			inMatch0.add(treePlayers.get(i+2));
-			System.out.println(treePlayers.get(i).getName() + " vs " + treePlayers.get(i+2).getName());
-			List<Golfer> inMatch1 = new ArrayList<Golfer> ();
-			inMatch1.add(treePlayers.get(i+1));
-			inMatch1.add(treePlayers.get(i+3));
-			System.out.println(treePlayers.get(i+1).getName() + " vs " + treePlayers.get(i+3).getName());
+			inMatch0.add(treePlayers.get(0));
+			inMatch0.add(treePlayers.get(1));
 			Match match0 = new Match(inMatch0, "playoffsnp", null);
-			Match match1 = new Match(inMatch1, "playoffsnp", null);
 			firstRoundMatches.add(match0);
-			firstRoundMatches.add(match1);
-			
 		}
+		
+		else {
+			for(int i = 0; i < treePlayers.size(); i += 4) {
+				List<Golfer> inMatch0 = new ArrayList<Golfer> ();
+				inMatch0.add(treePlayers.get(i));
+				inMatch0.add(treePlayers.get(i+2));
+				System.out.println(treePlayers.get(i).getName() + " vs " + treePlayers.get(i+2).getName());
+				List<Golfer> inMatch1 = new ArrayList<Golfer> ();
+				inMatch1.add(treePlayers.get(i+1));
+				inMatch1.add(treePlayers.get(i+3));
+				System.out.println(treePlayers.get(i+1).getName() + " vs " + treePlayers.get(i+3).getName());
+				Match match0 = new Match(inMatch0, "playoffsnp", null);
+				Match match1 = new Match(inMatch1, "playoffsnp", null);
+				firstRoundMatches.add(match0);
+				firstRoundMatches.add(match1);
+				
+			}
+		}
+		
 		return firstRoundMatches;
 	}
 }

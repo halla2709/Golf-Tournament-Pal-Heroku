@@ -51,4 +51,9 @@ public class TournamentServiceImplementation implements TournamentService {
 	public List<Tournament> findByName(String name) {
 		return repository.findByNameContaining(name);
 	}
+
+	@Override
+	public List<Tournament> findByGolfer(Long golferSocial) {
+		return repository.findByGolfer(golferSocial);
+	}
 }
