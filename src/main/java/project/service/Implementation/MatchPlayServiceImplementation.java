@@ -213,6 +213,7 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 								String winnerName = "";
 								if(bracket.getPlayers().get(i).getSocial() == matchWinner) winnerName = bracket.getPlayers().get(i).getName();
 								else if(bracket.getPlayers().get(j).getSocial() == matchWinner) winnerName = bracket.getPlayers().get(j).getName();
+								if(winnerName.indexOf(" ") > 0) winnerName = winnerName.substring(0, winnerName.indexOf(" "));
 								resultTable[i+numberOfPlayersInBracket*bracketNum][j] = winnerName + " won:" + matchResults.substring(matchResults.indexOf(" "));
 								resultTable[j+numberOfPlayersInBracket*bracketNum][i] = winnerName + " won:" + matchResults.substring(matchResults.indexOf(" "));
 							}
