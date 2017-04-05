@@ -233,7 +233,7 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 		for(Bracket bracket : brackets) {
 			int playersInBracket = bracket.getPlayers().size();
 			int playersFromThisBracket = 0;
-			for(int i = playersInBracket-1; i > 0; i--) {
+			for(int i = playersInBracket-1; i >= 0; i--) {
 				for(Golfer player : bracket.getPlayers()) {
 					if(playerPoints.get(player.getSocial()) == i) {
 						System.out.println("Adding " + player.getName() + " to the playoffs.");

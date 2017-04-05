@@ -299,23 +299,25 @@ public class TournamentResultController {
 	public String addPlayersToTree(@PathVariable(value="id") Long id) {
 		MatchPlayTournament tournament = matchPlayService.findOne(id);
 		List<Bracket> brackets = tournament.getBrackets();
+		boolean round2started = false;
 		if(tournament.getPlayOffs().getRounds().size() > 1) {
-			boolean round2started = false;
 			for(Match match : tournament.getPlayOffs().getRounds().get(1).getMatches()) {
 				if(match.getPlayers() != null) {
 					round2started = true;
 					break;
 				}
 			}
-			if(!round2started) {
+		}
+		if(!round2started) {
 				int numberInFirstRound = tournament.getPlayOffs().getRounds().get(0).getMatches().size();
 				List<Match> firstRoundMatches = matchPlayService.getPlayersToPlayOffTree(brackets, numberInFirstRound*2);
 				if(firstRoundMatches.size() == tournament.getPlayOffs().getRounds().get(0).getMatches().size()) {
 					tournament.getPlayOffs().getRounds().get(0).setMatches(firstRoundMatches);
 				}
-			}
 			return "redirect:/tournament/"+id+"/playofftree";
 		}
+			
+
 		return "redirect:/tournament/"+id+"/brackets";
 	}
 	
@@ -381,23 +383,27 @@ public class TournamentResultController {
 	public @ResponseBody MatchPlayTournament createTree(@PathVariable(value="id") Long id) {
 		MatchPlayTournament tournament = matchPlayService.findOne(id);
 		List<Bracket> brackets = tournament.getBrackets();
+		boolean round2started = false;
 		if(tournament.getPlayOffs().getRounds().size() > 1) {
-			boolean round2started = false;
+			System.out.println("More that one round");
 			for(Match match : tournament.getPlayOffs().getRounds().get(1).getMatches()) {
-				if(match.getPlayers() != null) {
+				if(match.getPlayers() != null && match.getPlayers().size() > 0) {
+					System.out.println("Match started");
 					round2started = true;
 					break;
 				}
 			}
-			if(!round2started) {
-				int numberInFirstRound = tournament.getPlayOffs().getRounds().get(0).getMatches().size();
-				List<Match> firstRoundMatches = matchPlayService.getPlayersToPlayOffTree(brackets, numberInFirstRound*2);
-				if(firstRoundMatches.size() == tournament.getPlayOffs().getRounds().get(0).getMatches().size()) {
-					tournament.getPlayOffs().getRounds().get(0).setMatches(firstRoundMatches);
-					return matchPlayService.save(tournament);
-				}
+		}
+		if(!round2started || tournament.getPlayOffs().getRounds().size() == 1) {
+			int numberInFirstRound = tournament.getPlayOffs().getRounds().get(0).getMatches().size();
+			List<Match> firstRoundMatches = matchPlayService.getPlayersToPlayOffTree(brackets, numberInFirstRound*2);
+			if(firstRoundMatches.size() == tournament.getPlayOffs().getRounds().get(0).getMatches().size()) {
+				tournament.getPlayOffs().getRounds().get(0).setMatches(firstRoundMatches);
+				System.out.println("Returning new");
+				return matchPlayService.save(tournament);
 			}
 		}
+		System.out.println("Returning original");
 		return tournament;
 	}
 	
