@@ -84,7 +84,6 @@ public class MainController {
 
     	Golfer golfer = golferService.findOne(social);
     	golfer.setHandicap(handicap);
-    	System.out.println("Updated handicap =" + golfer.getHandicap());
     	return golfer;
 
 	}

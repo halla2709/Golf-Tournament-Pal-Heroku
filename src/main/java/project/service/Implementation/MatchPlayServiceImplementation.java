@@ -242,7 +242,6 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 			for(int i = playersInBracket-1; i >= 0; i--) {
 				for(Golfer player : bracket.getPlayers()) {
 					if(playerPoints.get(player.getSocial()) == i) {
-						System.out.println("Adding " + player.getName() + " to the playoffs.");
 						treePlayers.add(player);
 						playersFromThisBracket++;
 						if(playersFromThisBracket == playersInTree/brackets.size()) break;
@@ -266,11 +265,9 @@ public class MatchPlayServiceImplementation implements MatchPlayService {
 				List<Golfer> inMatch0 = new ArrayList<Golfer> ();
 				inMatch0.add(treePlayers.get(i));
 				inMatch0.add(treePlayers.get(i+2));
-				System.out.println(treePlayers.get(i).getName() + " vs " + treePlayers.get(i+2).getName());
 				List<Golfer> inMatch1 = new ArrayList<Golfer> ();
 				inMatch1.add(treePlayers.get(i+1));
 				inMatch1.add(treePlayers.get(i+3));
-				System.out.println(treePlayers.get(i+1).getName() + " vs " + treePlayers.get(i+3).getName());
 				Match match0 = new Match(inMatch0, "playoffsnp", null);
 				Match match1 = new Match(inMatch1, "playoffsnp", null);
 				firstRoundMatches.add(match0);

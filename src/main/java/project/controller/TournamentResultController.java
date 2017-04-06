@@ -61,12 +61,6 @@ public class TournamentResultController {
         return tournaments;
     }
 	
-	@RequestMapping(value="/json/sendayfir", method=RequestMethod.GET)
-	public @ResponseBody String yfir(@RequestParam(value="nafn") String nafn) {
-		System.out.println(nafn);
-		return nafn;
-	}
-	
 	@RequestMapping(value="/tournament/{id}", method=RequestMethod.POST)
 	public String addRoundToTournament(@PathVariable(value="id") Long id,
 			@RequestParam(value="h1") int h1,
@@ -385,10 +379,8 @@ public class TournamentResultController {
 		List<Bracket> brackets = tournament.getBrackets();
 		boolean round2started = false;
 		if(tournament.getPlayOffs().getRounds().size() > 1) {
-			System.out.println("More that one round");
 			for(Match match : tournament.getPlayOffs().getRounds().get(1).getMatches()) {
 				if(match.getPlayers() != null && match.getPlayers().size() > 0) {
-					System.out.println("Match started");
 					round2started = true;
 					break;
 				}
@@ -399,11 +391,9 @@ public class TournamentResultController {
 			List<Match> firstRoundMatches = matchPlayService.getPlayersToPlayOffTree(brackets, numberInFirstRound*2);
 			if(firstRoundMatches.size() == tournament.getPlayOffs().getRounds().get(0).getMatches().size()) {
 				tournament.getPlayOffs().getRounds().get(0).setMatches(firstRoundMatches);
-				System.out.println("Returning new");
 				return matchPlayService.save(tournament);
 			}
 		}
-		System.out.println("Returning original");
 		return tournament;
 	}
 	

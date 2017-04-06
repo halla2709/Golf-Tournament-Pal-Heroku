@@ -112,7 +112,6 @@ public class ScoreboardCreatorController {
     @RequestMapping(value="/json/scoreboard", method = RequestMethod.POST)
     public @ResponseBody ScoreboardTournament postTournamentFromServer(@RequestBody ScoreboardTournament sentTournament,
 			@RequestParam Long hostSocial) {
-    	System.out.println(sentTournament.getName());
 		Golfer host = golferService.findOne(hostSocial);
 		
 		// Adda playerum í gagnagrunn og sem vin. 

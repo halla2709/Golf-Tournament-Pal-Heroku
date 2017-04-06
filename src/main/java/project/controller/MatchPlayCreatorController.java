@@ -123,7 +123,6 @@ public class MatchPlayCreatorController {
 	@RequestMapping(value="/json/matchplay", method = RequestMethod.POST)
 	public @ResponseBody MatchPlayTournament saveTournamentFromServer(@RequestBody MatchPlayTournament sentTournament,
 								@RequestParam Long hostSocial, @RequestParam int nIBrackets, @RequestParam int nOOBrackets) {
-		System.out.println(sentTournament.getName());
 		Golfer host = golferService.findOne(hostSocial);
 		
 		// Adda playerum í gagnagrunn og sem vin. 
