@@ -173,7 +173,7 @@ public class MatchPlayCreator {
 				playersInMatch.add(players.get(i));
 				playersInMatch.add(players.get(players.size()-1-i));
 				
-				emptyMatches.add(i, new Match());
+				emptyMatches.add(i, new Match(null, "np", null));
 				emptyMatches.get(i).setPlayers(playersInMatch);
 			}
 			PlayOffRound p = new PlayOffRound(emptyMatches, 1);
